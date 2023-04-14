@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import ReceitaForm
+from .forms import ReceitaForm, DespesaForm
 from django.contrib import messages
 
 # View para visualizar a home
@@ -35,8 +35,30 @@ def criar_receita(request):
 
 # View para criar uma nova despesa
 def criar_despesa(request):
+    form = DespesaForm(request.POST or None)
+    if str(request.method) == 'POST':
+        if form.is_valid():
+            valor = form.cleaned_data['valor'] # pegue esses dados ...
+            data = form.cleaned_data['data']
+            categoria = form.cleaned_data['categoria']
+            descricao = form.cleaned_data['descricao']
 
-    return render(request, 'criar_despesa.html')
+            print('Dados registrados')
+            print(f'Valor: {valor}')
+            print(f'Data: {data}')
+            print(f'Categoria: {categoria}')
+            print(f'Valor: {descricao}')
+
+            messages.success(request, 'Dados da Despesa cadastrado com sucesso!')
+
+            form = DespesaForm()
+        else:
+            messages.error(request= 'Erro ao cadastrar dos dados das Despesas')
+    context = {
+            'form': form
+    }
+
+    return render(request, 'criar_despesa.html', context)
 
 
 # View para listar todas as receitas

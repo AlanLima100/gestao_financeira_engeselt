@@ -8,7 +8,7 @@ class ReceitaForm(forms.Form):
     categoria = forms.ChoiceField(label='Categoria:', choices=[('investimento', 'Investimento'), ('presente', 'Presente'), ('premio', 'Prêmio'), ('salario', 'Salário'), ('outros', 'Outros')])
     descricao = forms.CharField(label='Descrição:',  widget=forms.Textarea())
 
-    def send_mail(self):
+    def send_mail(self): # caso eu queira que mande um e-mail para alguem, já foi confirado no settings.py
         valor = self.cleaned_data['valor']
         data = self.cleaned_data['data']
         categoria = self.cleaned_data['categoria']
@@ -24,7 +24,7 @@ class ReceitaForm(forms.Form):
             headers={'Reaply=-To' : data}
         )
         mail.send()
-
+    descricao = forms.CharField(label='Descrição:', widget=forms.Textarea()) 
    
 
 # # Formulário para criação/edição de uma despesa

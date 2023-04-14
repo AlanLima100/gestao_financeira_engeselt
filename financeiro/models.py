@@ -35,13 +35,17 @@ CATEGORIAS_DESPESA = (
 
 class Receita(Base):
     valor = models.DecimalField('Valor:', max_digits=8, decimal_places=2)
+
     data = models.DateField('Data:')
     categoria = models.CharField('Categoria:', choices=CATEGORIAS_RECEITA , max_length=200, blank=True)
-    descricao = forms.CharField(widget=forms.Textarea)
+
+
+    descricao = models.CharField('Descrição:', max_length=200, blank=True)
+    
     slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
     
     def __str__(self) -> str:
-        return self.categoria
+        return f'{self.categoria} - {self.valor}'
 
 
 def receita_pre_save(signal, instance, sender, **kwargs):
@@ -51,4 +55,14 @@ signals.pre_save.connect(receita_pre_save, sender=Receita)# antes de salvar, exe
 
 
 
+class Despesa(Base):
+    valor = models.DecimalField('Valor:', max_digits=8, decimal_places=2)
+    data = models.DateField('Data:')
 
+    categoria = models.CharField('Categoria:',choices=CATEGORIAS_DESPESA, max_length=200, blank=True )
+
+    descricao = models.CharField('Descrição:', max_length=200, blank=True)
+
+    def __str__(self) -> str:
+        return f'{self.categoria} - {self.valor}'
+    

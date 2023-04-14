@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import ReceitaForm, DespesaForm
+from django.contrib import messages
 
 # View para visualizar a home
 def home(request):
@@ -8,8 +9,24 @@ def home(request):
 
 # View para criar uma nova receita
 def criar_receita(request):
-    form = ReceitaForm()
+    form = ReceitaForm(request.POST or None) # pdoe conter dados quando o usuário clicar "POST" no botão enviar ou um form vazio quando "GET" assim que abre a pagina 'criar_receita'
+    if str(request.method) == 'POST': #ou seja o usuário clicou e enviou dados
+        if form.is_valid(): # e só tudo foi preenchido certinho e tá valido, se o formulário n tem erros return true
+            valor = form.cleaned_data['valor'] # pegue esses dados ...
+            data = form.cleaned_data['data']
+            categoria = form.cleaned_data['categoria']
+            descricao = form.cleaned_data['descricao']
 
+            print('Dados registrados')
+            print(f'Valor: {valor}')
+            print(f'Data: {data}')
+            print(f'Categoria: {categoria}')
+            print(f'Valor: {descricao}')
+
+            messages.success(request, 'Dados da  receita cadastrado com sucesso!')#adicionando mensagens que vai aparecerla no html quando chamei  bootstrap_messages
+            form = ReceitaForm() # limpando o formulario
+        else: # caso não for um formulário
+            messages.error(request, 'Erro ao cadastrar dados na receita')    
     context = {
         'form': form
     }

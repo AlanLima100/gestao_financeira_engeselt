@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import ReceitaForm, DespesaForm
 
 # View para visualizar a home
 def home(request):
@@ -7,8 +8,12 @@ def home(request):
 
 # View para criar uma nova receita
 def criar_receita(request):
+    form = ReceitaForm()
 
-    return render(request, 'criar_receita.html')
+    context = {
+        'form': form
+    }
+    return render(request, 'criar_receita.html', context)
 
 
 # View para criar uma nova despesa

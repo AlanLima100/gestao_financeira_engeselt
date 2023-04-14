@@ -23,7 +23,7 @@ def criar_receita(request):
             print(f'Categoria: {categoria}')
             print(f'Valor: {descricao}')
 
-            messages.success(request, 'Dados da  receita cadastrado com sucesso!')#adicionando mensagens que vai aparecerla no html quando chamei  bootstrap_messages
+            messages.success(request, 'Dados da  receita cadastrado com sucesso!')#adicionando mensagens que vai aparecerla no html quando clicar em enviarque chamei no bootstrap_messages
             form = ReceitaForm() # limpando o formulario
         else: # caso não for um formulário
             messages.error(request, 'Erro ao cadastrar dados na receita')    

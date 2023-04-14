@@ -12,7 +12,7 @@
     <div class="container"> <!-- Seu    comentário aqui -->
         <h1>Criar receita</h1>
         {% bootstrap_messages %} <!-- mensagem do email-->
-        <form action="{% url criar_receita}" method="POST" class="form" autocomplete="off">
+        <form action="{% url 'criar_receita' %}" method="POST" class="form" autocomplete="off"><!--  -->
             {% csrf_token %} <!--recurso de segurança  dica: se tiver trabalahndo com forms *formularios* e não por o csrf_token dentro das tags form ele nuca será valido-->
             {% bootstrap_form form %}<!-- estou falando aqui para o bootstrap aplicar o form que tá vindo lá do context da views.py-->
             {% buttons %}

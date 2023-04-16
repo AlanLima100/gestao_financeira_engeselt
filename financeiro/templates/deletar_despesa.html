@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% extends 'base.html' %}
+
+    {% block content %}
+    <h1>Deletar Despesa</h1>
+    <p>Você tem certeza que deseja deletar a seguinte despesa?</p>
+    <p><strong>Nome:</strong> {{ despesa.nome }}</p>
+    <p><strong>Valor:</strong> R$ {{ despesa.valor }}</p>
+
+    <form action="{% url 'deletar_despesa' despesa.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Deletar">
+        <a href="{% url 'lista_receitas_despesas' %}">Cancelar</a>
+    </form>
+    {% endblock %}
+    
+</body>
+</html>

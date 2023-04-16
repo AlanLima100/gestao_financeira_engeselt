@@ -19,5 +19,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include ('financeiro.urls')), # qualquer rota que não for admin, envie / inclua  as rotas da aplicação financeiro.urls
+    path("", include ('financeiro.urls')), # qualquer rota que não for admin, envie / inclua  as rotas da aplicação financeiro.urls
 ]

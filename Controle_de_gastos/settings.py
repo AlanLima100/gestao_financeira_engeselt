@@ -59,7 +59,7 @@ ROOT_URLCONF = 'Controle_de_gastos.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': ['templates/financeiro'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'Controle_de_gastos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'engeselt3',
+        'NAME': 'engeselt4',
         'USER': 'alanvitor',
         'PASSWORD': 'alanvitor',
         'HOST': 'localhost',

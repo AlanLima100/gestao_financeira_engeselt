@@ -41,6 +41,8 @@ class Receita(Base):
 
 
     descricao = models.CharField('Descrição:', max_length=200, blank=True)
+
+    comprovante = models.FileField(upload_to='comprovantes/')
     
     slug = models.SlugField('Slug', max_length=100, blank=True, editable=False)
     
@@ -62,6 +64,8 @@ class Despesa(Base):
     categoria = models.CharField('Categoria:',choices=CATEGORIAS_DESPESA, max_length=200, blank=True )
 
     descricao = models.CharField('Descrição:', max_length=200, blank=True)
+
+    comprovante = models.FileField(upload_to='comprovantes/')
 
     def __str__(self) -> str:
         return f'{self.categoria} - {self.valor}'

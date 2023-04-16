@@ -3,17 +3,19 @@ from .models import Receita, Despesa
 
 
 
-@admin.register(Receita)
+
 class ReceitaAdmin(admin.ModelAdmin):
-    list_display = ('valor', 'data', 'categoria', 'descricao', 'slug', 'criado', 'modificado', 'ativo')
-
-    list_filter = ['categoria']
+    list_display = ('valor', 'data', 'categoria', 'descricao')
+    list_filter = ['categoria', 'valor', 'data']
     search_fields = ['descricao']
 
+admin.site.register(Receita, ReceitaAdmin)
 
-@admin.register(Despesa)
+
+
 class DespesaAdmin(admin.ModelAdmin):
-    list_display =('valor', 'data', 'categoria','descricao')
-    
-    list_filter = ['categoria']
+    list_display =('valor', 'data', 'categoria', 'descricao')
+    list_filter = ['categoria', 'valor', 'data']
     search_fields = ['descricao']
+
+admin.site.register(Despesa, DespesaAdmin)

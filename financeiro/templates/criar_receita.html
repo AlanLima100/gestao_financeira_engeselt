@@ -16,7 +16,7 @@
             {% csrf_token %} <!--recurso de segurança  dica: se tiver trabalahndo com forms *formularios* e não por o csrf_token dentro das tags form ele nuca será valido-->
             {% bootstrap_form form %}<!-- estou falando aqui para o bootstrap aplicar o form que tá vindo lá do context da views.py-->
             {% buttons %}
-                <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+                <button type="submit" class="btn btn-primary">Salvar Nova  Receita</button>
             {% endbuttons %}
 
         </form> <!-- quando o usuário clicar no botão enviar, qual será a ação?: ele vai enviar os dados para nossa URL de name = criar_receita "post"p/ submeter*enviar dados* dados/ class="form" vem do  % load bootstrap4 % resumo: vai pegar os dados que foram digitados assim que apertar o botão enviar pelo action e evniar para url então isso vai lá para views.py dentro da def criar_receita para ser tratado

@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -7,7 +9,24 @@
     <title>Editar Despesas</title>
 </head>
 <body>
-    <h1>Editar Despesas</h1>
-    
-</body>
+    {% block content %}
+    <div class="container">
+      <h1>Editar Despesa</h1>
+      <form method="post" action="{% url 'editar_despesa' pk=despesa.pk %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="nome">Nome:</label>
+          <input type="text" class="form-control" id="nome" name="nome" value="{{ form.nome.value }}">
+        </div>
+        <div class="form-group">
+          <label for="valor">Valor:</label>
+          <input type="text" class="form-control" id="valor" name="valor" value="{{ form.valor.value }}">
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{% url 'lista_receitas_despesas' %}" class="btn btn-secondary">Cancelar</a>
+      </form>
+    </div>
+    {% endblock %}
+  </body>
+  
 </html>

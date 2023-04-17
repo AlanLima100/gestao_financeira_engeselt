@@ -9,6 +9,7 @@
 <body>
     {% if despesas %}
         <h2>Lista de Despesas</h2>
+        <a href="{% url 'baixar_despesas'%}">baixar todas as receitas</a>
         <ul>
         {% for despesa in despesas %}
             <li> R$ -{{ despesa.valor }} -- {{ despesa.data }} --{{despesa.categoria}} -- {{ despesa.descricao }} -- {{ despesa.comprovante}} -- (criado em: {{ despesa.criado_em|date:"d/m/Y H:i:s"}})  <a href="{% url 'editar_despesa' despesa.id %}">editar</a></li><br>

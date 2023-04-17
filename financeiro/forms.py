@@ -1,5 +1,4 @@
 from django import forms
-from django.core.mail.message import EmailMessage
 from .models import Despesa, Receita
 
 # Formulário para criação/edição de uma receita

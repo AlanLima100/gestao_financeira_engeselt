@@ -3,6 +3,9 @@ from .forms import ReceitaForm, DespesaForm
 from .models import Receita, Despesa
 from django.db.models import *
 
+import csv
+from django.http import HttpResponse
+
 
 
 
@@ -112,3 +115,33 @@ def deletar_receita(request, pk):
         return redirect('lista_receitas')
 
     return render(request, 'deletar_despesa.html', {'receita': receita})
+
+def baixar_receitas(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="receitas.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Valor', 'Categoria', 'Data/Hora', 'descricao'])
+
+    
+    receitas = Receita.objects.all() # aqui esta pegando todas as receitas, para especificar o periodo da data teria que aplicar um filtro aqui
+
+    for receita in receitas:
+        writer.writerow([receita.valor, receita.categoria, receita.data_hora, receita.descricao])
+
+    return response
+
+
+def baixar_despesas(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="despesas.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['Valor', 'Categoria', 'Data/Hora'])
+
+    despesas = Despesa.objects.all()
+
+    for despesa in despesas:
+        writer.writerow([despesa.valor, despesa.categoria, despesa.data_hora])
+
+    return response

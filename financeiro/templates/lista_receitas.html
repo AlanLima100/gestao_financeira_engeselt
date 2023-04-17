@@ -9,7 +9,7 @@
 <body>
     {% if receitas %}
    
-    <h2>Lista de Receitas</h2>
+    <h2>Lista de Receitas</h2> <a href="{% url 'baixar_receitas'%}">baixar todas as receitas</a>
     <ul>
     {% for receita in receitas %}
         <li> R$ - {{ receita.valor }} - {{ receita.data }} -- {{ receita.categoria }} -- {{ receita.descricao }} -- {{ receita.comprovante }} -- (criado em: {{ receita.criado_em|date:"d/m/Y H:i:s" })<a href="{% url 'editar_receita' receita.id %}">editar</a></li><br>

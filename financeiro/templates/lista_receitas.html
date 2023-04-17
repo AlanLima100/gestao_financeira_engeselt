@@ -12,7 +12,7 @@
     <h2>Lista de Receitas</h2>
     <ul>
     {% for receita in receitas %}
-        <li> R$ - {{ receita.valor }} - {{ receita.data }} -- {{ receita.categoria }} -- {{ receita.descricao }} -- {{ receita.comprovante }} -- (criado em: {{ receita.criado_em|date:"d/m/Y H:i:s"}})<a href="{% url 'editar_receita' receita.id %}">editar</a></li><br>
+        <li> R$ - {{ receita.valor }} - {{ receita.data }} -- {{ receita.categoria }} -- {{ receita.descricao }} -- {{ receita.comprovante }} -- (criado em: {{ receita.criado_em|date:"d/m/Y H:i:s" })<a href="{% url 'editar_receita' receita.id %}">editar</a></li><br>
 
         <form action="{% url 'deletar_receita' receita.id %}" method="POST" style="display: inline;">
             {% csrf_token %}

@@ -65,13 +65,14 @@ def lista_despesas(request):
 def editar_receita(request, pk):
     receita = get_object_or_404(Receita, pk=pk)
     if request.method == 'POST':
-        form = ReceitaForm(request.POST, instance=receita)
+        form = ReceitaForm(request.POST or None, instance=receita,
+        initial={'data': receita.data})
         if form.is_valid():
             form.save()
             return redirect('lista_receitas')
     else:
-        form = ReceitaForm(instance=receita)
-    return render(request, 'editar_receita.html', {'form': form})
+        form = ReceitaForm(instance=receita, initial={'data': receita.data})
+    return render(request, 'editar_receita.html', {'form': form, 'receita': receita})
 
 
 def editar_despesa(request, pk):

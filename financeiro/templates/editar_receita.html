@@ -1,5 +1,7 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,16 +9,18 @@
     <title>Editar RECEITA</title>
 </head>
 <body>
-    {% extends 'base.html' %}
-
     {% block content %}
-      <h2>Editar Receita</h2>
-      <form method="post">
+    <div class="container">
+      <h1>Editar Receita</h1>
+      <form method="post" action="{% url 'editar_receita' receita.pk %}">
         {% csrf_token %}
         {{ form.as_p }}
     
-        <button type="submit">Salvar</button>
+
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <a href="{% url 'lista_receitas_despesas' %}" class="btn btn-secondary">Cancelar</a>
       </form>
+    </div>
     {% endblock %}
     
 </body>

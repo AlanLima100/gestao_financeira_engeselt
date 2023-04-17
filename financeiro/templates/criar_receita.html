@@ -1,6 +1,7 @@
+{% extends 'base.html' %}
 {% load bootstrap4 %}
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,19 +10,13 @@
     {% bootstrap_css %}
 </head>
 <body>
-    <div class="container"> <!-- Seu    comentário aqui -->
-        <h1>Criar receita</h1>
-        {% bootstrap_messages %} <!-- mensagem do email-->
-        <form action="{% url 'criar_receita' %}" method="POST" class="form" autocomplete="off"><!--  -->
+    {% block content %}
+        <h1>Criar receita</h1> 
+        <form method="POST" enctype="multipart/form-data" action="{% url 'criar_receita' %}">
             {% csrf_token %} <!--recurso de segurança  dica: se tiver trabalahndo com forms *formularios* e não por o csrf_token dentro das tags form ele nuca será valido-->
             {% bootstrap_form form %}<!-- estou falando aqui para o bootstrap aplicar o form que tá vindo lá do context da views.py-->
-            {% buttons %}
-                <button type="submit" class="btn btn-primary">Salvar Nova  Receita</button>
-            {% endbuttons %}
-
-        </form> <!-- quando o usuário clicar no botão enviar, qual será a ação?: ele vai enviar os dados para nossa URL de name = criar_receita "post"p/ submeter*enviar dados* dados/ class="form" vem do  % load bootstrap4 % resumo: vai pegar os dados que foram digitados assim que apertar o botão enviar pelo action e evniar para url então isso vai lá para views.py dentro da def criar_receita para ser tratado
-        -->
-    </div>
-{% bootstrap_javascript jquery='full' %}
+            <button type="submit" class="btn btn-primary">Salvar Nova  Receita</button>
+        </form>
+    {% endblock %}    
 </body>
 </html>

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
 <body>
     {% block content %}
       <h1>Criar Despesa</h1>
-      <form method="POST" enctype="multipart/form-data" action="{% url 'lista_receitas_despesas' %}">
+      <form method="POST" enctype="multipart/form-data" action="{% url 'criar_despesa' %}">
         {% csrf_token %}
         {% bootstrap_form form %}
         <button type="submit">Salvar</button>

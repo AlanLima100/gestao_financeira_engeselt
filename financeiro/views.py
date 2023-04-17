@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ReceitaForm, DespesaForm
-from django.http import HttpResponseRedirect
 from .models import Receita, Despesa
 import itertools
 
@@ -17,28 +16,34 @@ def home(request):
 
 
 def criar_receita(request):
-    if request.method == 'POST':
-        form = ReceitaForm(request.POST)
+    if str(request.method) == 'POST':
+        form = ReceitaForm(request.POST, request.FILES or None)
         if form.is_valid():
             form.save()
+            form = ReceitaForm()
             return redirect('lista_receitas_despesas')
     else:
         form = ReceitaForm()
-    return render(request, 'criar_receita.html', {'form': form})
+    context = {
+        'form': form
+    }    
+    return render(request, 'criar_receita.html', context)
 
 
 
 def criar_despesa(request):
-    if request.method == 'POST':
-        form = DespesaForm(request.POST, request.FILES)
+    if str(request.method) == 'POST':
+        form = DespesaForm(request.POST, request.FILES or None)
         if form.is_valid():
-            despesa = form.save(commit=False)
-            despesa.usuario = request.user
-            despesa.save()
-            return HttpResponseRedirect('lista_receitas_despesas')
+            form.save()
+            form = DespesaForm()
+            return redirect('lista_receitas_despesas')
     else:
         form = DespesaForm()
-    return render(request, 'criar_despesa.html', {'form': form})
+    context = {
+        'form': form
+    }    
+    return render(request, 'criar_despesa.html', context)
 
 
 
@@ -65,7 +70,7 @@ def editar_receita(request, pk):
 def editar_despesa(request, pk):
     despesa = get_object_or_404(Despesa, pk=pk)
     if request.method == 'POST':
-        form = DespesaForm(request.POST, instance=despesa, initial={'data': despesa.data})
+        form = DespesaForm(request.POST or None, instance=despesa, initial={'data': despesa.data})
         if form.is_valid():
             form.save()
             return redirect('lista_receitas_despesas')

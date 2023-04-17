@@ -11,11 +11,13 @@
         <h2>Lista de Receitas</h2>
         <ul>
         {% for receita in receitas %}
-            <li>{{ receita.nome }} - R$ {{ receita.valor }} <a href="{% url 'editar_receita' receita.id %}">editar</a></li>
+            <li> R$ - {{ receita.valor }} - {{ receita.data }} -- {{ receita.categoria }} -- {{ receita.descricao }} -- {{ receita.comprovante }} -- {{ receita.slug }} <a href="{% url 'editar_receita' receita.id %}">editar</a></li><br>
 
             <form action="{% url 'deletar_receita' receita.id %}" method="POST" style="display: inline;">
                 {% csrf_token %}
                 <button type="submit">apagar</button>
+                <br>
+                <br>
             </form>
         {% endfor %}
         </ul>
@@ -25,11 +27,13 @@
         <h2>Lista de Despesas</h2>
         <ul>
         {% for despesa in despesas %}
-            <li>{{ despesa.nome }} - R$ {{ despesa.valor }} <a href="{% url 'editar_despesa' despesa.id %}">editar</a></li>
+            <li> R$ -{{ despesa.valor }} -- {{ despesa.data }} --{{despesa.categoria}} -- {{ despesa.descricao }} -- {{ despesa.comprovante}} <a href="{% url 'editar_despesa' despesa.id %}">editar</a></li><br>
 
             <form action="{% url 'deletar_despesa' despesa.id %}" method="POST" style="display: inline;">
                 {% csrf_token %}
                 <button type="submit">apagar</button>
+                <br>
+                <br>
             </form>
         {% endfor %}
         </ul>

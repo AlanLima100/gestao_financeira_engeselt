@@ -3,12 +3,16 @@ from django.core.mail.message import EmailMessage
 from .models import Despesa, Receita
 
 # Formulário para criação/edição de uma receita
-class ReceitaForm(forms.Form):
-    valor = forms.DecimalField(label='Valor:', max_digits=8, decimal_places=2)
-    data = forms.DateField(label='Data:')
-    categoria = forms.ChoiceField(label='Categoria:', choices=[('investimento', 'Investimento'), ('presente', 'Presente'), ('premio', 'Prêmio'), ('salario', 'Salário'), ('outros', 'Outros')])
-    descricao = forms.CharField(label='Descrição:',  widget=forms.Textarea())
-
+class ReceitaForm(forms.ModelForm):
+    class Meta:
+        model = Receita
+        fields = '__all__'
+    
+    def save(self, commit=True):
+        receita = super(ReceitaForm, self).save(commit=False)
+        if commit:
+            receita.save()
+        return receita
 
    
 

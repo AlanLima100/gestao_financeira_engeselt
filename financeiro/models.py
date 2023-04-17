@@ -50,10 +50,6 @@ class Receita(Base):
         return f'{self.categoria} - {self.valor}'
 
 
-def receita_pre_save(signal, instance, sender, **kwargs):
-    instance.slug = slugify(instance.categoria)
-
-signals.pre_save.connect(receita_pre_save, sender=Receita)# antes de salvar, execute a função 'receita_pre_sauve' quando Receita submeter um sinal *signal*, ou seja, quando Receita for salvo esse metodo vai ser executado
 
 
 

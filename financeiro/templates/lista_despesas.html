@@ -11,7 +11,7 @@
         <h2>Lista de Despesas</h2>
         <ul>
         {% for despesa in despesas %}
-            <li> R$ -{{ despesa.valor }} -- {{ despesa.data }} --{{despesa.categoria}} -- {{ despesa.descricao }} -- {{ despesa.comprovante}} <a href="{% url 'editar_despesa' despesa.id %}">editar</a></li><br>
+            <li> R$ -{{ despesa.valor }} -- {{ despesa.data }} --{{despesa.categoria}} -- {{ despesa.descricao }} -- {{ despesa.comprovante}} -- (criado em: {{ despesa.criado_em|date:"d/m/Y H:i:s"}})  <a href="{% url 'editar_despesa' despesa.id %}">editar</a></li><br>
 
             <form action="{% url 'deletar_despesa' despesa.id %}" method="POST" style="display: inline;">
                 {% csrf_token %}

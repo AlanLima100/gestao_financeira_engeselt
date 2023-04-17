@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'financeiro',
     'bootstrap4',
     'stdimage',
+   # 'defaultfilters',
+   'django.template.defaultfilters',
 ]
 
 MIDDLEWARE = [
@@ -56,10 +58,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Controle_de_gastos.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates/financeiro'],
+TEMPLATES = [{'BACKEND': 'django.template.backends.django.DjangoTemplates','DIRS': ['templates/financeiro'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -68,6 +67,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'defaultfilters': 'django.template.defaultfilters',
+            },
         },
     },
 ]
@@ -81,7 +83,7 @@ WSGI_APPLICATION = 'Controle_de_gastos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'engeselt4',
+        'NAME': 'engeselt6',
         'USER': 'alanvitor',
         'PASSWORD': 'alanvitor',
         'HOST': 'localhost',

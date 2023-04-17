@@ -7,22 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    {% if receitas %}
-        <h2>Lista de Receitas</h2>
-        <ul>
-        {% for receita in receitas %}
-            <li> R$ - {{ receita.valor }} - {{ receita.data }} -- {{ receita.categoria }} -- {{ receita.descricao }} -- {{ receita.comprovante }} -- {{ receita.slug }} <a href="{% url 'editar_receita' receita.id %}">editar</a></li><br>
-
-            <form action="{% url 'deletar_receita' receita.id %}" method="POST" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit">apagar</button>
-                <br>
-                <br>
-            </form>
-        {% endfor %}
-        </ul>
-    {% endif %}
-
     {% if despesas %}
         <h2>Lista de Despesas</h2>
         <ul>
@@ -38,7 +22,5 @@
         {% endfor %}
         </ul>
     {% endif %}
-</body>
-    
 </body>
 </html>

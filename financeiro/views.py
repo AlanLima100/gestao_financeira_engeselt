@@ -47,12 +47,21 @@ def criar_despesa(request):
 
 
 
-def lista_receitas_despesas(request):
+# def lista_receitas_despesas(request):
+#     receitas = Receita.objects.all()
+#     despesas = Despesa.objects.all()
+#     lista = sorted(itertools.chain(receitas, despesas), key=lambda obj: obj.data, reverse=True)
+#     return render(request, 'lista_receitas_despesas.html', {'receitas': receitas, 'despesas': despesas, 'lista': lista})
+def lista_receitas(request):
     receitas = Receita.objects.all()
-    despesas = Despesa.objects.all()
-    lista = sorted(itertools.chain(receitas, despesas), key=lambda obj: obj.data, reverse=True)
-    return render(request, 'lista_receitas_despesas.html', {'receitas': receitas, 'despesas': despesas, 'lista': lista})
+    context = {'receitas': receitas}
+    return render(request, 'lista_receitas.html', context)
 
+
+def lista_despesas(request):
+    despesas = Despesa.objects.all()
+    context = {'despesas': despesas}
+    return render(request, 'lista_despesas.html', context)
 
 
 def editar_receita(request, pk):

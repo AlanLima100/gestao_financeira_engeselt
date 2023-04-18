@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, criar_receita, criar_despesa, lista_receitas, lista_despesas, editar_receita, editar_despesa, deletar_despesa, deletar_receita, baixar_receitas, baixar_despesas, baixar_despesas_filtradas
+from .views import home, criar_receita, criar_despesa, lista_receitas, lista_despesas, editar_receita, editar_despesa, deletar_despesa, deletar_receita, baixar_receitas, baixar_despesas, baixar_despesas_filtradas, baixar_receitas_filtradas
 
 
 
@@ -30,5 +30,11 @@ urlpatterns = [
 
 
     path('baixar_despesas_filtradas/', baixar_despesas_filtradas, name='baixar_despesas_filtradas'),    
+
+        
+    path('baixar_receitas_filtradas/', baixar_receitas_filtradas, name='baixar_receitas_filtradas'),  
+
+
+
 
 ]

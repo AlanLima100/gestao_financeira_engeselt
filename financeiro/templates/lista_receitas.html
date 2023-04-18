@@ -7,21 +7,73 @@
     <title>Document</title>
 </head>
 <body>
-    {% if receitas %}
-   
-    <h2>Lista de Receitas</h2> <a href="{% url 'baixar_receitas'%}">baixar todas as receitas</a>
-    <ul>
-    {% for receita in receitas %}
-        <li> R$ - {{ receita.valor }} - {{ receita.data }} -- {{ receita.categoria }} -- {{ receita.descricao }} -- {{ receita.comprovante }} -- (criado em: {{ receita.criado_em|date:"d/m/Y H:i:s" }})<a href="{% url 'editar_receita' receita.id %}">editar</a></li><br>
+    <a href="{% url 'home' %}" class="button">Página Inicial</a>
+    <br>
+    <br>
+    <div class="filtro">
+        <form method="GET">
+            <label for="filtro-data-inicial">Filtrar por data:</label>
+            <input type="date" id="filtro-data-inicial" name="data_inicial" value="{{ data_inicial_filtro }}"> até
+            <input type="date" id="filtro-data-final" name="data_final" value="{{ data_final_filtro }}">
 
-        <form action="{% url 'deletar_receita' receita.id %}" method="POST" style="display: inline;">
-            {% csrf_token %}
-            <button type="submit">apagar</button>
-            <br>
-            <br>
+            <label for="filtro-valor">Filtrar por valor:</label>
+            <input type="number" id="filtro-valor-min" name="min_valor" placeholder="Mínimo" value="{{ valor_filtro.min }}">
+            <input type="number" id="filtro-valor-max" name="max_valor" placeholder="Máximo" value="{{ valor_filtro.max }}">
+
+            <label for="filtro-categoria">Filtrar por categoria:</label>
+            <select id="filtro-categoria" name="categoria">
+                <option value="">Todos</option>
+                {% for categoria in categorias %}
+                <option value="{{ categoria }}" {% if categoria == categoria_filtro %} selected {% endif %}>{{ categoria }}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Filtrar</button>
+            <a href="{% url 'lista_receitas' %}" class="btn btn-secondary">Limpar Filtros</a>
         </form>
-    {% endfor %}
-    </ul>
-    {% endif %}
+    </div>
+    
+    <h2>Resumo de Receitas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Categoria</th>
+                <th>Total Gasto</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria, total_gasto in resumo_receitas.items %}
+            <tr>
+                <td>{{ categoria }}</td>
+                <td>R$ {{ total_gasto }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    
+
+    <h2>Lista de Receitas</h2> <a href="{% url 'baixar_receitas'%}">baixar todas as receitas</a>
+
+
+    <a href="{% url 'baixar_receitas_filtradas' %}?valor={{ valor_filtro }}&data={{ data_filtro }}&categoria={{ categoria_filtro }}">Baixar as Receitas filtradas</a>
+    
+
+    <ul>
+        {% for receita in receitas %}
+            <li> R$ - {{ receita.valor }} - {{ receita.data }} -- {{ receita.categoria }} -- {{ receita.descricao }} -- {{ receita.comprovante }} -- (criado em: {{ receita.criado_em|date:"d/m/Y H:i:s" }})<a href="{% url 'editar_receita' receita.id %}">editar</a></li><br>
+
+            <form action="{% url 'deletar_receita' receita.id %}" method="POST" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">apagar</button>
+                <br>
+                <br>
+            </form>
+            {% empty %}
+                <p>Não há despesas para exibir.</p>
+        {% endfor %}
+        </ul>
+    </ul> 
+
 </body>
 </html>

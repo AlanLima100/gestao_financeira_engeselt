@@ -53,7 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'Whitenoise.middleware.WhiteNoiseMiddleware',
+    #'Whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'Controle_de_gastos.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'engeselt6',
+        'NAME': 'engeselt7',
         'USER': 'alanvitor',
         'PASSWORD': 'alanvitor',
         'HOST': 'localhost',

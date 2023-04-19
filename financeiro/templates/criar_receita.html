@@ -16,6 +16,8 @@
             {% csrf_token %} <!--recurso de segurança  dica: se tiver trabalahndo com forms *formularios* e não por o csrf_token dentro das tags form ele nuca será valido-->
             {% bootstrap_form form %}<!-- estou falando aqui para o bootstrap aplicar o form que tá vindo lá do context da views.py-->
             <button type="submit" class="btn btn-primary">Salvar Nova  Receita</button>
+
+            <a href="/home">Voltar para a home</a>
         </form>
     {% endblock %}    
 </body>

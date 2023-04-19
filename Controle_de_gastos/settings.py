@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'financeiro',
     'bootstrap4',
     'stdimage',
-   # 'defaultfilters',
    'django.template.defaultfilters',
 ]
 

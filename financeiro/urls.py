@@ -5,6 +5,7 @@ from .views import home, criar_receita, criar_despesa, lista_receitas, lista_des
 
 urlpatterns = [
     path('', home, name='home'),
+    path('home', home, name='home'),
 
     path('criar-receita/', criar_receita, name='criar_receita'),
 

@@ -6,6 +6,7 @@ from datetime import datetime
 import csv
 from django.db.models import Q
 from django.http import HttpResponse
+from django.contrib import messages
 
 
 
@@ -23,7 +24,17 @@ def criar_receita(request):
     if str(request.method) == 'POST':
         form = ReceitaForm(request.POST, request.FILES or None)
         if form.is_valid():
+            # Verifica se já existe uma despesa com os mesmos valores
+            valor = form.cleaned_data['valor']
+            data = form.cleaned_data['data']
+            categoria = form.cleaned_data['categoria']
+            receitas = Receita.objects.filter(valor=valor, data=data, categoria=categoria)
+            if receitas.exists():
+                messages.error(request, 'Já existe uma receita com esses valores.')
+                return redirect('criar_receita')
+            # Salva a nova despesa
             form.save()
+            messages.success(request, 'Receita cadastrada com sucesso.')
             form = ReceitaForm()
             return redirect('lista_receitas')
     else:
@@ -39,7 +50,17 @@ def criar_despesa(request):
     if str(request.method) == 'POST':
         form = DespesaForm(request.POST, request.FILES or None)
         if form.is_valid():
+            # Verifica se já existe uma despesa com os mesmos valores
+            valor = form.cleaned_data['valor']
+            data = form.cleaned_data['data']
+            categoria = form.cleaned_data['categoria']
+            despesas = Despesa.objects.filter(valor=valor, data=data, categoria=categoria)
+            if despesas.exists():
+                messages.error(request, 'Já existe uma despesa com esses valores.')
+                return redirect('criar_despesa')
+            # Salva a nova despesa
             form.save()
+            messages.success(request, 'Despesa cadastrada com sucesso.')
             form = DespesaForm()
             return redirect('lista_despesas')
     else:

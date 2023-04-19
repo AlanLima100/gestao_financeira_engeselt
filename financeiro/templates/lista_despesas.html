@@ -52,6 +52,8 @@
     </table>
 
     <h2>Lista de Despesas</h2>
+    {% include 'messages.html' %}
+
     <a href="{% url 'baixar_despesas'%}">Baixar todas as despesas</a>
     
     <a href="{% url 'baixar_despesas_filtradas' %}?valor={{ valor_filtro }}&data={{ data_filtro }}&categoria={{ categoria_filtro }}">Baixar as Despesas filtradas</a>

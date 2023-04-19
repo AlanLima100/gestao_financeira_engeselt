@@ -15,7 +15,12 @@
       <form method="POST" enctype="multipart/form-data" action="{% url 'criar_despesa' %}">
         {% csrf_token %}
         {% bootstrap_form form %}
+        {% include 'messages.html' %}
         <button type="submit">Salvar</button>
+        <br>
+
+        <a href="/home">Voltar para a home</a>
+
       </form>
     {% endblock %}
   </body>

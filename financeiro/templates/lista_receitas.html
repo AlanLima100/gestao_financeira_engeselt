@@ -53,7 +53,10 @@
 
     
 
-    <h2>Lista de Receitas</h2> <a href="{% url 'baixar_receitas'%}">baixar todas as receitas</a>
+    <h2>Lista de Receitas</h2> 
+    {% include 'messages.html' %}
+    
+    <a href="{% url 'baixar_receitas'%}">baixar todas as receitas</a>
 
 
     <a href="{% url 'baixar_receitas_filtradas' %}?valor={{ valor_filtro }}&data={{ data_filtro }}&categoria={{ categoria_filtro }}">Baixar as Receitas filtradas</a>
@@ -70,7 +73,7 @@
                 <br>
             </form>
             {% empty %}
-                <p>Não há despesas para exibir.</p>
+                <p>Não há receitas para exibir.</p>
         {% endfor %}
         </ul>
     </ul> 

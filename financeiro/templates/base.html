@@ -1,3 +1,5 @@
+{% load bootstrap4 %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -5,12 +7,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
-    {% block head %}
-    {% endblock %}
+    {% bootstrap_css %}
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
-
+	<h1>{% block heading %}{% endblock %}</h1>
+	<p>Escolha uma opção abaixo:</p>
+	<ul>
+		<li><a href="{% url 'criar_receita' %}">Criar nova Receita</a></li>
+		<li><a href="{% url 'criar_despesa' %}">Criar nova Despesa</a></li>
+		<li><a href="{% url 'lista_receitas' %}">Listar todas Receitas</a></li>
+		<li><a href="{% url 'lista_despesas' %}">Listar todas Despesas</a></li>
+	</ul>
+	{% block content %}
+	{% endblock %}
 </body>
 </html>
+Observe que os blocos "title", "heading" e "content" foram definidos usando a tag "block" do Django. Isso permite que você substitua o conteúdo dentro desses blocos em seus modelos filhos.
+
+Aqui está um exemplo de como seria o arquivo home.html estendendo o modelo base:
+
+{% extends 'base.html' %}
+
+{% block title %}
+HOME
+{% endblock %}
+
+{% block heading %}
+Bem-vindo ao Controle de Gastos de suas Finanças!
+{% endblock %}
+
+{% block content %}
+
+<p>Conteúdo exclusivo da página home aqui...</p>
+{% endblock %}

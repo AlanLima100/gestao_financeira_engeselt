@@ -1,13 +1,17 @@
+{% include "base.html" %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+
+    <a href="{% url 'home' %}" class="btn btn-primary">Pagina inicial</a>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Despesas</title>
 </head>
 <body>
-    <a href="{% url 'home' %}" class="button">Página Inicial</a>
+
     <br>
     <br>
     <div class="filtro">
@@ -28,50 +32,64 @@
                 {% endfor %}
             </select>
 
-            <button type="submit">Filtrar</button>
+            <button type="submit" class="btn btn-primary">Filtrar</button>
             <a href="{% url 'lista_despesas' %}" class="btn btn-secondary">Limpar Filtros</a>
         </form>
     </div>
 
-    <h2>Resumo de Despesas</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Categoria</th>
-                <th>Total Gasto</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for categoria, total_gasto in resumo_despesas.items %}
-            <tr>
-                <td>{{ categoria }}</td>
-                <td>R$ {{ total_gasto }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 
-    <h2>Lista de Despesas</h2>
-    {% include 'messages.html' %}
 
-    <a href="{% url 'baixar_despesas'%}">Baixar todas as despesas</a>
-    
-    <a href="{% url 'baixar_despesas_filtradas' %}?valor={{ valor_filtro }}&data={{ data_filtro }}&categoria={{ categoria_filtro }}">Baixar as Despesas filtradas</a>
-    
-    <ul>
-        {% for despesa in despesas %}
-        <li> R$ -{{ despesa.valor }} -- {{ despesa.data }} --{{despesa.categoria}} -- {{ despesa.descricao }} -- {{ despesa.comprovante}} -- (criado em: {{ despesa.criado_em|date:"d/m/Y H:i:s"}})  <a href="{% url 'editar_despesa' despesa.id %}">editar</a></li><br>
+   <center><h2>Lista de Despesas</h2></center> 
+   <br>
 
+{% include 'messages.html' %}
+
+<a href="{% url 'baixar_receitas'%}" class="btn btn-primary">Baixar todas as receitas</a>
+
+<a href="{% url 'baixar_despesas_filtradas' %}?valor={{ valor_filtro }}&data={{ data_filtro }}&categoria={{ categoria_filtro }} " class="btn btn-success float-center" >Baixar as Despesas Filtradas</a>
+
+{% if despesas %}
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th>Valor</th>
+      <th>Data</th>
+      <th>Categoria</th>
+      <th>Descrição</th>
+      <th>Comprovante</th>
+      <th>Criado em</th>
+      <th>Editar</th>
+      <th>Apagar</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for despesa in despesas %}
+    <tr>
+      <td>R$ {{ despesa.valor }}</td>
+      <td>{{ despesa.data }}</td>
+      <td>{{ despesa.categoria }}</td>
+      <td>{{ despesa.descricao }}</td>
+      <td>{{ despesa.comprovante }}</td>
+      <td>{{ despesa.criado_em|date:"d/m/Y H:i:s" }}</td>
+      
+      <td><a href="{% url 'editar_despesa' despesa.id %}" class="btn btn-warning">editar</a></td>
+      <td>
         <form action="{% url 'deletar_despesa' despesa.id %}" method="POST" style="display: inline;">
-            {% csrf_token %}
-            <button type="submit">apagar</button>
-            <br>
-            <br>
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">Apagar</button>
         </form>
-        {% empty %}
-            <p>Não há despesas para exibir.</p>
-        {% endfor %}
-    </ul>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="8">Não há despesas para exibir.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>Não há despesas para exibir.</p>
+{% endif %}
 
 </body>
 </html>

@@ -1,22 +1,69 @@
+
 {% load bootstrap4 %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HOME</title>
+    <title>Controle de Gastos de suas Finanças</title>
     {% bootstrap_css %}
+    <style>
+        /* estilo personalizado */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .jumbotron {
+            background-color: #fff;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            padding: 2rem;
+        }
+        .lead {
+            font-size: 1.2rem;
+        }
+    </style>
 </head>
 <body>
-	<h1>Bem-vindo ao Controle de Gastos de suas Finanças!</h1>
-	<p>Escolha uma opção abaixo:</p>
-	<ul>
-		<li><a href="{% url 'criar_receita' %}">Criar nova Receita</a></li>
-		<li><a href="{% url 'criar_despesa' %}">Criar nova Despesa</a></li>
-		<li><a href="{% url 'lista_receitas' %}">Listar todas Receitas</a></li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="btn btn-dark" href="#">Controle de Gastos</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="btn btn-success" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="{% url 'criar_receita' %}">Criar nova Receita</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-warning" href="{% url 'lista_receitas' %}">Listar todas Receitas</a>
 
-		<li><a href="{% url 'lista_despesas' %}">Listar todas Despesas</a></li>
-	</ul>
-</body>
-</html>
+                <li class="nav-item">
+                    <a class="btn btn-primary" href="{% url 'criar_despesa' %}">Criar nova Despesa</a>
+                </li>
+                
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-warning" href="{% url 'lista_despesas' %}">Listar todas Despesas</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container my-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="jumbotron">
+                    <h1 class="display-4">Bem-vindo ao Controle de Gastos de suas Finanças!</h1>
+                    <hr class="my-4">
+                    <p class="lead">Aqui você pode controlar suas finanças de forma simples e eficiente. Cadastre suas receitas e despesas para ter uma visão geral do seu orçamento.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% bootstrap_javascript jquery='full' %}
+</body

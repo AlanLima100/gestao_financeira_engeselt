@@ -11,6 +11,7 @@ from django.contrib import messages
 
 
 
+
 # View para visualizar a home
 def home(request):
     receitas = Receita.objects.all() # Busca todas as receitas do banco de dados

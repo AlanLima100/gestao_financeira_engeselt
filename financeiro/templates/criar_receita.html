@@ -1,24 +1,20 @@
 {% extends 'base.html' %}
 {% load bootstrap4 %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar receita</title>
-    {% bootstrap_css %}
-</head>
-<body>
-    {% block content %}
-        <h1>Criar Finança de uma Receita</h1> 
-        <form method="POST" enctype="multipart/form-data" action="{% url 'criar_receita' %}">
-            {% csrf_token %} <!--recurso de segurança  dica: se tiver trabalahndo com forms *formularios* e não por o csrf_token dentro das tags form ele nuca será valido-->
-            {% bootstrap_form form %}<!-- estou falando aqui para o bootstrap aplicar o form que tá vindo lá do context da views.py-->
-            <button type="submit" class="btn btn-primary">Salvar Nova  Receita</button>
 
-            <a href="/home">Voltar para a home</a>
-        </form>
-    {% endblock %}    
-</body>
-</html>
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h1 class="text-center mb-5">Criar Finança de uma Receita</h1>
+      <form method="POST" enctype="multipart/form-data" action="{% url 'criar_despesa' %}">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+
+
+        <button type="submit" class="btn btn-primary btn-block mt-4">Salvar</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary btn-block mt-3">Voltar para a home</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

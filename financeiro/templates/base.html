@@ -1,42 +1,59 @@
 {% load bootstrap4 %}
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Controle de Finanças{% endblock %}</title>
     {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-	<h1>{% block heading %}{% endblock %}</h1>
-	<p>Escolha uma opção abaixo:</p>
-	<ul>
-		<li><a href="{% url 'criar_receita' %}">Criar nova Receita</a></li>
-		<li><a href="{% url 'criar_despesa' %}">Criar nova Despesa</a></li>
-		<li><a href="{% url 'lista_receitas' %}">Listar todas Receitas</a></li>
-		<li><a href="{% url 'lista_despesas' %}">Listar todas Despesas</a></li>
-	</ul>
-	{% block content %}
-	{% endblock %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Controle de Gastos</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item {% if request.path == '/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item {% if request.path == '/criar_receita/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'criar_receita' %}">Criar nova Receita</a>
+            </li>
+            <li class="nav-item {% if request.path == '/criar_despesa/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'criar_despesa' %}">Criar nova Despesa</a>
+            </li>
+            <li class="nav-item {% if request.path == '/lista_receitas/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'lista_receitas' %}">Listar todas Receitas</a>
+            </li>
+            <li class="nav-item {% if request.path == '/lista_despesas/' %}active{% endif %}">
+                <a class="nav-link" href="{% url 'lista_despesas' %}">Listar todas Despesas</a>
+            </li>
+            <li class="nav-item {% if request.path == '/contact/' %}active{% endif %}">
+
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-lg-8">
+            {% block content %}
+            {% endblock %}
+        </div>
+        <div class="col-lg-4">
+            <!-- Insira aqui qualquer conteúdo adicional que você queira exibir -->
+        </div>
+    </div>
+</div>
+
+{% bootstrap_javascript jquery='full' %}
 </body>
 </html>
-Observe que os blocos "title", "heading" e "content" foram definidos usando a tag "block" do Django. Isso permite que você substitua o conteúdo dentro desses blocos em seus modelos filhos.
-
-Aqui está um exemplo de como seria o arquivo home.html estendendo o modelo base:
-
-{% extends 'base.html' %}
-
-{% block title %}
-HOME
-{% endblock %}
-
-{% block heading %}
-Bem-vindo ao Controle de Gastos de suas Finanças!
-{% endblock %}
-
-{% block content %}
-
-<p>Conteúdo exclusivo da página home aqui...</p>
-{% endblock %}

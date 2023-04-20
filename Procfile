@@ -1,1 +1,0 @@
-web: gunicorn Controle_de_gastos.wsgi --log-file -

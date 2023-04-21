@@ -1,6 +1,7 @@
 # Como rodar o projeto gestao_financeira_engeselt
 
 
+
   - Clone esse repositório.
   
   - Crie um virtualenv com Python 3.11.3

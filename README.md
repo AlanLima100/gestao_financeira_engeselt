@@ -1,5 +1,18 @@
 # Como rodar o projeto gestao_financeira_engeselt
 
+<<<<<<< HEAD
+=======
+  - Clone esse repositório.
+  
+  - Crie um virtualenv com Python 3.11.3
+  
+  - Ative o virtualenv.
+  
+  - Instale as dependências.
+  
+  - Rode as migrações.
+  
+>>>>>>> 188840b9f96f31e579be35908eb71e765e2482aa
 
 
   - Clone esse repositório.

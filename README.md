@@ -21,6 +21,6 @@ pip install -r requirements.txt
 
 .\venv\Scripts\activate
 
-pip install -r requirements.txt
-python contrib/env_gen.py
 python manage.py migrate
+
+python manage.py runserver

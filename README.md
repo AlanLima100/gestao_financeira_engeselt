@@ -17,7 +17,11 @@
 
 git clone https://github.com/AlanLima100/gestao_financeira_engeselt
 
+cd gestao_financeira_engeselt
+
 python -m venv venv
+
+.\venv\Scripts\activate
 
 pip install django
 
@@ -25,7 +29,6 @@ python -m pip install --upgrade pip (Para atualizar para masi rececente)
 
 pip install -r requirements.txt
 
-.\venv\Scripts\activate
 
 python manage.py migrate
 

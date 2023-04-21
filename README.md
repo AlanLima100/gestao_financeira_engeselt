@@ -11,7 +11,7 @@
 
 git clone https://github.com/AlanLima100/gestao_financeira_engeselt
 
-python -m ven venv
+python -m venv venv
 
 pip install django
 

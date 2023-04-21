@@ -10,8 +10,9 @@
   
   Rode as migrações.
   
+  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   
-
+  
 
 git clone https://github.com/AlanLima100/gestao_financeira_engeselt
 

@@ -11,14 +11,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
-import dj_database_url
+
 
 
 # Usando PostgreSQL com o Heroku
 
-DATABASES = {
-    'default': dj_database_url.config()
-}
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-n61op5ei$a_u3+x@88rw$0unfo@_ihaan^4de8v5sh$k9@0-)z'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -89,13 +87,37 @@ WSGI_APPLICATION = 'Controle_de_gastos.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'engeselt7',
+#         'NAME': 'engeselt8',
 #         'USER': 'alanvitor',
 #         'PASSWORD': 'alanvitor',
 #         'HOST': 'localhost',
 #         'PORT': '3306',
 #     }
 # }
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'alanvitor2',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Password validation
